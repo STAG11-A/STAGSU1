@@ -1,18 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Воспроизведение звука</title>
+    <title>Воспроизведение звука на весь экран (мобильная версия)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Предотвращает прокрутку */
+        }
+        #fullscreenButton {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            touch-action: manipulation; /* Разрешает обработку касаний */
+        }
+    </style>
 </head>
 <body>
-    <button id="playButton">Воспроизвести звук</button>
+    <button id="fullscreenButton"></button>
     <audio id="myAudio" src="reklama-porno-igry.mp3"></audio>
 
     <script>
         var audio = document.getElementById('myAudio');
-        var playButton = document.getElementById('playButton');
+        var fullscreenButton = document.getElementById('fullscreenButton');
 
-        playButton.addEventListener('click', function() {
+        fullscreenButton.addEventListener('touchstart', function(event) {
+            event.preventDefault(); // Предотвращает стандартное поведение касания
             audio.play();
+            audio.volume = 1; // Установка громкости на 100%
         });
     </script>
 </body>
