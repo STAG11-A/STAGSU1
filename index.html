@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Автоматическое воспроизведение звука</title>
+    <title>Воспроизведение звука</title>
 </head>
 <body>
-    <audio id="myAudio" src="reklama-porno-igry.mp3"></audio>
+    <button id="playButton">Воспроизвести звук</button>
+    <audio id="myAudio" src="sound11.mp3"></audio>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var audio = document.getElementById('myAudio');
+        var audio = document.getElementById('myAudio');
+        var playButton = document.getElementById('playButton');
+
+        playButton.addEventListener('click', function() {
             audio.play();
-            // Повышение громкости до 100%
-            audio.volume = 1;
         });
     </script>
 </body>
