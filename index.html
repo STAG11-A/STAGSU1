@@ -41,7 +41,7 @@
 
     <script>
         // Укажите путь к вашему звуковому файлу
-        const audioFile = "reklama-porno-igry.mp3"; // Замените на название вашего файла
+        const audioFile = "your-sound-file.mp3"; // Замените на название вашего файла
 
         document.getElementById('playButton').addEventListener('click', function() {
             // Создаем элемент <audio>
@@ -55,6 +55,21 @@
                 console.error("Ошибка воспроизведения звука:", error);
                 alert("Не удалось воспроизвести звук. Проверьте, поддерживает ли браузер аудио.");
             });
+
+            // Для Яндекс Браузера и других браузеров на Chromium
+            // Если Web Audio API поддерживается, можно использовать его для более точного управления громкостью
+            if (typeof window.AudioContext !== "undefined" || typeof window.webkitAudioContext !== "undefined") {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const source = audioContext.createMediaElementSource(audio);
+                const gainNode = audioContext.createGain();
+
+                // Подключаем gainNode к выходу аудиоконтекста
+                source.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                // Устанавливаем громкость на 100%
+                gainNode.gain.value = 1.0;
+            }
         });
     </script>
 </body>
