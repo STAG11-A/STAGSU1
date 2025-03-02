@@ -40,30 +40,21 @@
     <button id="playButton">PLAY</button>
 
     <script>
+        // Укажите путь к вашему звуковому файлу
+        const audioFile = "reklama-porno-igry.mp3"; // Замените на название вашего файла
+
         document.getElementById('playButton').addEventListener('click', function() {
-            // Проверяем, поддерживает ли браузер управление громкостью
-            if (typeof window.AudioContext !== "undefined" || typeof window.webkitAudioContext !== "undefined") {
-                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const gainNode = audioContext.createGain();
+            // Создаем элемент <audio>
+            const audio = new Audio(audioFile);
 
-                // Подключаем gainNode к выходу аудиоконтекста
-                gainNode.connect(audioContext.destination);
+            // Устанавливаем громкость на 100%
+            audio.volume = 1.0;
 
-                // Устанавливаем громкость на 100%
-                gainNode.gain.value = 1.0;
-
-                // Создаем пустой аудиобуфер и воспроизводим его
-                const buffer = audioContext.createBuffer(1, 1, 22050);
-                const source = audioContext.createBufferSource();
-                source.buffer = buffer;
-                source.connect(gainNode);
-                source.start(0);
-
-                // Останавливаем воспроизведение через 1 мс
-                source.stop(audioContext.currentTime + 0.001);
-            } else {
-                alert('Ваш браузер не поддерживает управление громкостью.');
-            }
+            // Воспроизводим звук
+            audio.play().catch(error => {
+                console.error("Ошибка воспроизведения звука:", error);
+                alert("Не удалось воспроизвести звук. Проверьте, поддерживает ли браузер аудио.");
+            });
         });
     </script>
 </body>
