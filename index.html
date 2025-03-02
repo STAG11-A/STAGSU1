@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Автоматическое воспроизведение звука</title>
+</head>
+<body>
+    <audio id="myAudio" src="your_audio_file.mp3"></audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var audio = document.getElementById('myAudio');
+            audio.play();
+            // Повышение громкости до 100%
+            audio.volume = 1;
+        });
+    </script>
+</body>
+</html>
